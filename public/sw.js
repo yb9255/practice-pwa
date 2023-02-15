@@ -86,7 +86,7 @@ self.addEventListener("fetch", function (event) {
         } catch {
           const cacheStorage = await caches.open(CACHE_STATIC_NAME);
 
-          if (event.request.url.includes("/help")) {
+          if (event.request.headers.get("accept").includes("text/html")) {
             return cacheStorage.match("/offline.html");
           }
         }
