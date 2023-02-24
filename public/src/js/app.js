@@ -4,18 +4,20 @@ if (!window.Promise) {
   window.Promise = Promise;
 }
 
-if ("serviceWorker" in navigator) {
-  async function registorServiceWorker() {
+if (navigator.serviceWorker) {
+  const registerServiceWorker = async () => {
     try {
       await navigator.serviceWorker.register("/sw.js");
       console.log("Service worker registered!");
     } catch (error) {
       console.log(err);
     }
-  }
+  };
+
+  registerServiceWorker();
 }
 
-window.addEventListener("beforeinstallprompt", function (event) {
+window.addEventListener("beforeinstallprompt", (event) => {
   console.log("beforeinstallprompt fired");
   event.preventDefault();
 

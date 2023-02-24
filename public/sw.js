@@ -17,7 +17,7 @@ const STATIC_FILES = [
   "https://cdnjs.cloudflare.com/ajax/libs/material-design-lite/1.3.0/material.indigo-pink.min.css",
 ];
 
-self.addEventListener("install", function (event) {
+self.addEventListener("install", (event) => {
   console.log("[Service Worker] Installing Service Worker ...", event);
   event.waitUntil(
     (async () => {
@@ -30,7 +30,7 @@ self.addEventListener("install", function (event) {
   );
 });
 
-self.addEventListener("activate", function (event) {
+self.addEventListener("activate", (event) => {
   console.log("[Service Worker] Activating Service Worker ....", event);
 
   event.waitUntil(
@@ -52,7 +52,7 @@ self.addEventListener("activate", function (event) {
 });
 
 // Cache then Network strategy
-self.addEventListener("fetch", function (event) {
+self.addEventListener("fetch", (event) => {
   const url = "https://httpbin.org/get";
 
   if (event.request.url.includes(url)) {
