@@ -1,9 +1,5 @@
 let deferredPrompt;
 
-if (!window.Promise) {
-  window.Promise = Promise;
-}
-
 if (navigator.serviceWorker) {
   const registerServiceWorker = async () => {
     try {
