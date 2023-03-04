@@ -1,9 +1,9 @@
-var shareImageButton = document.querySelector("#share-image-button");
-var createPostArea = document.querySelector("#create-post");
-var closeCreatePostModalButton = document.querySelector(
+const shareImageButton = document.querySelector("#share-image-button");
+const createPostArea = document.querySelector("#create-post");
+const closeCreatePostModalButton = document.querySelector(
   "#close-create-post-modal-btn"
 );
-var sharedMomentsArea = document.querySelector("#shared-moments");
+const sharedMomentsArea = document.querySelector("#shared-moments");
 
 function openCreatePostModal() {
   createPostArea.style.display = "block";
@@ -44,27 +44,34 @@ function onSaveButtonClicked(event) {
 }
 
 function createCard() {
-  var cardWrapper = document.createElement("div");
+  const cardWrapper = document.createElement("div");
   cardWrapper.className = "shared-moment-card mdl-card mdl-shadow--2dp";
-  var cardTitle = document.createElement("div");
+
+  const cardTitle = document.createElement("div");
   cardTitle.className = "mdl-card__title";
   cardTitle.style.backgroundImage = 'url("/src/images/sf-boat.jpg")';
   cardTitle.style.backgroundSize = "cover";
   cardTitle.style.height = "180px";
+
   cardWrapper.appendChild(cardTitle);
-  var cardTitleTextElement = document.createElement("h2");
+
+  const cardTitleTextElement = document.createElement("h2");
+
   cardTitleTextElement.style.color = "white";
   cardTitleTextElement.className = "mdl-card__title-text";
   cardTitleTextElement.textContent = "San Francisco Trip";
   cardTitle.appendChild(cardTitleTextElement);
-  var cardSupportingText = document.createElement("div");
+
+  const cardSupportingText = document.createElement("div");
   cardSupportingText.className = "mdl-card__supporting-text";
   cardSupportingText.textContent = "In San Francisco";
   cardSupportingText.style.textAlign = "center";
-  // var cardSaveButton = document.createElement("button");
+
+  // const cardSaveButton = document.createElement("button");
   // cardSaveButton.textContent = "Save";
   // cardSaveButton.addEventListener("click", onSaveButtonClicked);
   // cardSupportingText.appendChild(cardSaveButton);
+
   cardWrapper.appendChild(cardSupportingText);
   componentHandler.upgradeElement(cardWrapper);
   sharedMomentsArea.appendChild(cardWrapper);
