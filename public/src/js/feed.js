@@ -5,12 +5,12 @@ const closeCreatePostModalButton = document.querySelector(
 );
 const sharedMomentsArea = document.querySelector("#shared-moments");
 
-function openCreatePostModal() {
+const openCreatePostModal = () => {
   createPostArea.style.display = "block";
   if (deferredPrompt) {
     deferredPrompt.prompt();
 
-    deferredPrompt.userChoice.then(function (choiceResult) {
+    deferredPrompt.userChoice.then((choiceResult) => {
       console.log(choiceResult.outcome);
 
       if (choiceResult.outcome === "dismissed") {
@@ -22,18 +22,18 @@ function openCreatePostModal() {
 
     deferredPrompt = null;
   }
-}
+};
 
-function closeCreatePostModal() {
+const closeCreatePostModal = () => {
   createPostArea.style.display = "none";
-}
+};
 
 shareImageButton.addEventListener("click", openCreatePostModal);
 
 closeCreatePostModalButton.addEventListener("click", closeCreatePostModal);
 
 //Currently not in use, allows to save assets in cache on demand otherwise
-function onSaveButtonClicked(event) {
+const onSaveButtonClicked = (event) => {
   console.log("clicked");
   if ("caches" in window) {
     caches.open("user-requested").then((cache) => {
@@ -41,9 +41,9 @@ function onSaveButtonClicked(event) {
       cache.add("/src/images/sf-boat.jpg");
     });
   }
-}
+};
 
-function createCard() {
+const createCard = () => {
   const cardWrapper = document.createElement("div");
   cardWrapper.className = "shared-moment-card mdl-card mdl-shadow--2dp";
 
@@ -75,7 +75,7 @@ function createCard() {
   cardWrapper.appendChild(cardSupportingText);
   componentHandler.upgradeElement(cardWrapper);
   sharedMomentsArea.appendChild(cardWrapper);
-}
+};
 
 let networkDataReceived = false;
 
@@ -99,9 +99,13 @@ if ("caches" in window) {
 }
 
 (async () => {
-  const response = await fetch("https://httpbin.org/get");
+  // const response = await fetch("https://httpbin.org/get");
   // const data = await response.json();
+
+  await fetch("https://httpbin.org/get");
+
   networkDataReceived = true;
+
   clearCards();
   createCard();
 
@@ -109,9 +113,9 @@ if ("caches" in window) {
 })();
 
 // fetch("https://httpbin.org/get")
-//   .then(function (res) {
+//   .then((res) => {
 //     return res.json();
 //   })
-//   .then(function (data) {
+//   .then((data) => {
 //     createCard();
 //   });
